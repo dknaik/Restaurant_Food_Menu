@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    .menu-item img{
+        width:300px;
+        height:200px;
+        
+    }
+
+</style>
+<body>
+    <section class="menu">
+     
+        <div class="title">
+            <h2>our menu</h2>
+            <div class="underline">
+                  
+            </div>
+
+        </div>
+
+<!-- Filter -->
+<div class="btn-container">
+    <button class="filter-btn" data-id="all">all</button>
+        <button class="filter-btn"  data-id="breakfast">breakfast</button>
+    <button class="filter-btn" data-id="lunch">lunch</button>
+    <button class="filter-btn" data-id="snacks">snacks</button>
+
+</div>
+<!-- end filter -->
+
+
+
+        <div class="section-center">
+            <!-- single item -->
+            <!-- <article class="menu-item">
+<img src="images/food4.jpg" alt="">
+<div class="item-info">
+    <h4>kakkaa</h4>
+    <h4 class="price">$90</h4>
+</div>
+   <p class="item-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt repellat suscipit minima sit est modi deserunt illo tempore provident qui?</p> 
+
+
+    </article> -->
+        </div>
+    </section>
+
+    <script>
+        const menu=[
+            {
+                id:1,
+                title:"buttermilk",
+                category:"breakfast",
+                price:13.89,
+                img:"./images/food4.jpg",
+                desc:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad, magnam doloremque? Amet cumque ab nobis vero qui numquam, reprehenderit praesentium.",
+
+            },
+             {
+                id:2,
+                title:"buttermilk",
+                category:"lunch",
+                price:13.89,
+                img:"./images/food4.jpg",
+                desc:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad, magnam doloremque? Amet cumque ab nobis vero qui numquam, reprehenderit praesentium.",
+
+            },
+             {
+                id:3,
+                title:"dosa",
+                category:"breakfast",
+                price:13.89,
+                img:"./images/food4.jpg",
+                desc:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad, magnam doloremque? Amet cumque ab nobis vero qui numquam, reprehenderit praesentium.",
+
+            },
+             {
+                id:4,
+                title:"south Indian Thali",
+                category:"dinner",
+                price:13.89,
+                img:"./images/food4.jpg",
+                desc:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad, magnam doloremque? Amet cumque ab nobis vero qui numquam, reprehenderit praesentium.",
+
+            },
+              {
+                id:4,
+                title:"bujje",
+                category:"snacks",
+                price:13.89,
+                img:"./images/food4.jpg",
+                desc:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad, magnam doloremque? Amet cumque ab nobis vero qui numquam, reprehenderit praesentium.",
+
+            },
+
+
+        ]
+    
+        const sectionCenter=document.querySelector(".section-center");
+        const filterBtn = document.querySelectorAll('.filter-btn');
+
+
+        window.addEventListener('DOMContentLoaded',function(){
+           passedMenu(menu);
+
+        });
+
+        filterBtn.forEach(function(btn){
+  btn.addEventListener('click',function(e){
+    //   e.preventDefault;
+    //   console.log(e.currentTarget.dataset.id);
+    const category = e.currentTarget.dataset.id;
+    const menuCategory = menu.filter(function(menuItem){
+if(menuItem.category === category){
+    return menuItem;
+}
+//    return menuItem.category===category;
+});
+
+    if(category==="all"){
+    passedMenu(menu);
+}else{
+        // console.log(menuCategory);
+        passedMenu(menuCategory);
+}
+    // console.log(menuCategory);
+    //pass to passedManufun
+})
+})
+
+         
+    
+        function passedMenu(menuItems){
+            // console.log(menuItems);
+ let displayMenu = menuItems.map(function(item){
+              return `
+                 <article class="menu-item">
+<img src=${item.img} alt="">
+<div class="item-info">
+    <h4>${item.title}</h4>
+    <h4 class="price">${item.price}</h4>
+</div>
+   <p class="item-description">${item.desc}</p> 
+
+
+    </article>
+              `;
+            })
+            displayMenu=displayMenu.join('');
+            sectionCenter.innerHTML=displayMenu;
+                        // console.log(displayMenu);
+        }
+    </script>
+</body>
+</html>
